@@ -1,6 +1,7 @@
 const login = require("./utils/authentication/login");
 const signup = require("./utils/authentication/signup");
 const logout = require("./utils/authentication/logout");
+const forgotmail = require("./utils/authentication/forgotmail");
 const express = require("express");
 var session = require('express-session')
 const multer = require('multer')
@@ -53,6 +54,9 @@ app.get("/admin.css",function(request,response){
 })
 app.get("/home.js",function(request,response){
     response.sendFile(__dirname+"/src/js/home.js");
+})
+app.get("/forgotpass.js",function(request,response){
+    response.sendFile(__dirname+"/src/js/forgotpass.js");
 })
 app.get("/signup", function (request, response) {
     const Email = request.session.email;
@@ -178,7 +182,59 @@ app.post("/product", function (request, response) {
         })
 })
 app.get("/forgot", function (request, response) {
+    const email = request.query.email;
+    request.session.email = email;
     response.render("forgotpass");
+    console.log(email);
+})
+app.get("/forgotmail", function (request, response) {
+    response.render("forgotmail");
+})
+app.post("/forgotmail", function (request, response) {
+    const email = request.body.email;
+    forgotmail(email);
+    response.redirect("/signup");
+})  
+app.post("/forgot", function (request, response) {
+    const email = request.session.email;
+    const password = request.body.confirmpassword
+    fs.readFile("user.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            if (data.length === 0) {
+                data = "[]";
+            }
+            try {
+                const users = JSON.parse(data);
+                const filteredUser = users.filter(function (user) {
+                    return user.email === email;
+                })
+                if (filteredUser.length > 0) {
+                    filteredUser[0].password = password;
+                    fs.writeFile("user.txt", JSON.stringify(users, null, 2), function (err) {
+                        if (err) {
+                            response.status(500);
+                            console.log(err);
+                        }
+                        else {
+                            response.status(200);
+                            response.redirect("/login");
+                        }
+                    });
+                }
+                else {
+                    response.status(404);
+                    response.send("User notm found");
+                }
+            } catch (error) {
+                response.status(500);
+                console.log(error);
+            }
+        }
+    })
 })
 app.post("/signup", signup);
 app.post("/login", login);

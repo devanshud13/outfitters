@@ -1,7 +1,7 @@
 [
   {
     "username": "devanshu",
-    "password": "1",
+    "password": "4",
     "email": "Devanshu1220199@jmit.ac.in",
     "id": "9cbc9b5e144",
     "verified": true
