@@ -119,10 +119,10 @@ app.get("/login", function (request, response) {
     }
 })
 app.get("/admin", function (request, response) {
-    if (request.session.isLoggedIn) {
+    if (request.session.username === "Devanshu") {
         response.render("admin", { username: "Devanshu" });
     } else {
-        response.redirect("/login");
+        response.render("login", { username: request.session.username, usernotfound: false });
     }
 })
 app.get("/data", function (request, response) {
