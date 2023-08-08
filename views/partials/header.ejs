@@ -1,0 +1,27 @@
+  <header>
+    <nav>
+      <div class="navbar">
+        <div class="brand"><button data-text="Awesome" class="button">
+            <span class="actual-text">&nbsp;Outfitters&nbsp;</span>
+            <span class="hover-text" aria-hidden="true">&nbsp;Outfitters&nbsp;</span>
+        </button>
+      </div>
+        <div class="menu-icon">&#9776;</div>
+        <div class="user-info">
+          <%if(username){%>
+            <div class="username"><%=username%></div>
+            <%} else {%>
+              <div class="username"></div>
+          <%} %>
+          <%if(username){%>
+            <a href="/logout"><button id="btnlogout"> Log out</button></a>
+            <%} else {%>
+              <div class="login-signup">
+                <a href="/login"><button id="btnlogout"> Log in</button></a>
+                <a href="/signup"><button id="btnlogout"  > Sign up</button></a>
+              </div>
+          <%} %>
+        </div>
+      </div>
+    </nav>
+  </header>

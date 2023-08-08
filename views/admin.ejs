@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-commerce Admin Page</title>
+  <link rel="stylesheet" href="/admin.css">
+  <link rel="stylesheet" href="/header.css">
+
+
+</head>
+<body>
+  <%- include('partials/header') %>
+  <div class="admin-container">
+    <h1>Add New Product</h1>
+    <form class="product-form" action="/product" method="POST" enctype="multipart/form-data">
+      <label for="product-name">Product Name:</label>
+      <input type="text" id="product-name" name="productName" required>
+
+      <label for="product-description">Product Description:</label>
+      <textarea id="product-description" name="productDescription" required></textarea>
+
+      <label for="product-price">Product Price:</label>
+      <input type="number" id="product-price" name="productPrice"  required>
+
+      <label for="product-quantity">Product Quantity:</label>
+      <input type="number" id="product-quantity" name="productQuantity"  required>
+
+      <label for="product-image">Product Image:</label>
+      <input type="file" id="product-image" name="avtar"  required>
+
+      <button type="submit" id="Addbtn">Add Product</button>
+    </form>
+  </div>
+</body>
+</html>

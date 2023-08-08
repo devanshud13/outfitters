@@ -1,0 +1,92 @@
+fetch("/data")
+    .then(function (response) {
+        return response.json();
+    }
+    )
+    .then(function (data) {
+        data.forEach(function (product) {
+            const productName = product.productName;
+            const productPrice = product.productPrice;
+            const productDescription = product.productDescription;
+            const avtar = product.avtar;
+            const Id = product.id;
+            const main = document.getElementById("main");
+            const card = document.createElement("div");
+            card.setAttribute("class", "card");
+            card.innerHTML = `
+<div class="card__img">
+<img src="/${avtar}" draggable="false" alt="product image" class="card-image">
+</div>
+<div class="card__title">${productName}</div>
+<div class="card__wrapper">
+        <div class="card__price">₹ ${productPrice}</div>
+        <div class="card__counter">
+            <button class="card__btn">-</button>
+            <div class="card__counter-score">1</div>
+            <button class="card__btn card__btn-plus">+</button>
+        </div>
+    </div> 
+<div class="buttons">
+<button class="add-to-cart">Add to Cart</button>
+<button type="button" class="btn btn-success" id = ${Id} onclick= "handleModal(this.id,'${product.productDescription}','${avtar}','${productName}','${productPrice}')" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  View Details
+</button>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">Product Description</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      
+
+
+
+    <div class="card__img">
+<img src="/${avtar}" draggable="false" alt="product image" id ="pimg" class="card-image">
+</div>
+<div class="card__title" id="pname" >${productName}</div>
+<div class="card__subtitle" id="pdesc">${productDescription}</div>
+<div class="card__wrapper">
+      <div class="card__price" id="pprice" > ${productPrice}</div>
+  </div> 
+
+
+
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+</div>`
+            main.appendChild(card);
+
+        })
+    })
+    .catch(function (error) {
+        console.log(error);
+    }
+    )
+
+
+
+ function handleModal(id,productDescription,avtar,productName,productPrice){
+   const desc = document.getElementById("pdesc");
+   const name = document.getElementById("pname");
+    const price = document.getElementById("pprice");
+    const av = document.getElementById("pimg");
+    desc.innerText = productDescription;
+    name.innerText = productName;
+    price.innerText = "₹ "+ productPrice;
+    av.src = avtar;
+    console.log(avtar)
+    console.log(mod);
+    console.log(productDescription);
+    }

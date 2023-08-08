@@ -1,0 +1,289 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f2f2f2;
+    color: #fff;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: #f2a900;
+}
+
+a {
+    text-decoration: none;
+    color: #f2a900;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #ede2cb;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 1.5rem;
+}
+
+.menu-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    /* Hide the menu icon by default */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #f2a900;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.username {
+    margin-right: 10px;
+    color: black;
+}
+
+.login-signup a {
+    margin-left: 10px;
+    color: #f2a900;
+    text-decoration: none;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+        /* Show the menu icon for smaller screens */
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide the navigation links by default */
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        background-color: #232f3e;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .nav-links a {
+        color: #fff;
+    }
+
+    .navbar.active .nav-links {
+        display: flex;
+        /* Show the navigation links when the menu is active */
+    }
+}
+
+/* === removing default button style ===*/
+.button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+/* button styling */
+.button {
+    --border-right: 6px;
+    --text-stroke-color: rgba(255, 255, 255, 0.6);
+    --animation-color: #001555;
+    --fs-size: 2em;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: var(--fs-size);
+    font-family: "Arial";
+    position: relative;
+    text-transform: uppercase;
+    color: black;
+    -webkit-text-stroke: 1px rgb(0 0 0 / 60%);
+}
+
+/* this is the text, when you hover on button */
+.hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+}
+
+/* hover */
+.button:hover .hover-text {
+    width: 100%;
+    filter: drop-shadow(0 0 23px var(--animation-color))
+}
+
+
+
+/* logout btn*/
+.Btn {
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #2e2e2e;
+    --white: #ffffff;
+    --af-white: #f3f3f3;
+    --ch-white: #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--af-white);
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign svg path {
+    fill: var(--night-rider);
+}
+
+/* text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--night-rider);
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+/* hover effect on button width */
+.Btn:hover {
+    width: 125px;
+    border-radius: 5px;
+    transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+}
+
+/* hover effect button's text */
+.Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+
+/* button click effect*/
+.Btn:active {
+    transform: translate(2px, 2px);
+}
+
+#btnlogout {
+    --color: #560bad;
+    font-family: inherit;
+    display: inline-block;
+    width: 5em;
+    height: 2.2em;
+    line-height: 1.5em;
+    margin: 7px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+#btnlogout:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+#btnlogout:hover {
+    color: #fff;
+}
+
+#btnlogout:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+#btnlogout:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+#btnlogout:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+}
