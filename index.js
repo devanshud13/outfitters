@@ -177,6 +177,9 @@ app.post("/product", function (request, response) {
             }
         })
 })
+app.get("/forgot", function (request, response) {
+    response.render("forgotpass");
+})
 app.post("/signup", signup);
 app.post("/login", login);
 app.get("/logout", logout);
