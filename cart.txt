@@ -6,15 +6,17 @@
     "productQuantity": 9,
     "avtar": "e59cbefb0597d19d26cd2fcdc70bacc0",
     "id": "99dd08a3498",
-    "username": "Devanshu"
+    "username": "purva",
+    "count": 1
   },
   {
     "productName": "ADIDAS | MK-654 | Exclusive Edition",
-    "productPrice": "5000",
+    "productPrice": 5000,
     "productDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "productQuantity": "600",
     "avtar": "a53df84d468ba7e56862cb84cdd9ac64",
     "id": "5279636e737",
-    "username": "Devanshu"
+    "username": "Devanshu",
+    "count": 1
   }
 ]

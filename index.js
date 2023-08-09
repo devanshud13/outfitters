@@ -173,7 +173,8 @@ app.post("/product", function (request, response) {
         productQuantity: productQuantity,
         avtar: avtar.filename,
         id: num,
-        username: null
+        username: null,
+        count: 1    
         }
         fs.readFile("products.txt", "utf-8", function (error, data) {
             if (error) {
@@ -325,16 +326,8 @@ app.post("/cart", function (request, response) {
                 })
                 if (filteredProduct.length > 0) {
                     filteredProduct[0].username = user;
-                    // fs.writeFile("products.txt", JSON.stringify(products, null, 2), function (err) {
-                    //     if (err) {
-                    //         response.status(500);
-                    //         console.log(err);
-                    //     }
-                    //     else {
-                    //         response.status(200);
-                    //         response.redirect("/cart");
-                    //     }
-                    // });
+                    filteredProduct[0].count = 1;
+
                     fs.readFile("cart.txt", "utf-8", function (error, data) {
                         if (error) {
                             response.status(500);
@@ -363,6 +356,133 @@ app.post("/cart", function (request, response) {
                             }
                         }
                     })
+                }
+                else {
+                    response.status(404);
+                    response.send("Product not found");
+                }
+            } catch (error) {
+                response.status(500);
+                console.log(error);
+            }
+        }
+    })
+})
+app.post("/add", function (request, response) {
+    const id = request.query.id;
+    fs.readFile("cart.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            if (data.length === 0) {
+                data = "[]";
+            }
+            try {
+                const cart = JSON.parse(data);
+                const filteredProduct = cart.filter(function (product) {
+                    return product.id === id;
+                })
+
+                if (filteredProduct.length > 0) {
+                    filteredProduct[0].count += 1;
+                    const temp  = filteredProduct[0].count * filteredProduct[0].productPrice;
+                    filteredProduct[0].productPrice = temp / (filteredProduct[0].count-1);
+
+                    fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
+                        if (err) {
+                            response.status(500);
+                            console.log(err);
+                        }
+                        else {
+                            response.status(200);
+                            response.redirect("/cart");
+                        }
+                    });
+                }
+                else {
+                    response.status(404);
+                    response.send("Product not found");
+                }
+            } catch (error) {
+                response.status(500);
+                console.log(error);
+            }
+        }
+    })
+})
+app.post("/sub", function (request, response) {
+    const id = request.query.id;
+    fs.readFile("cart.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            if (data.length === 0) {
+                data = "[]";
+            }
+            try {
+                const cart = JSON.parse(data);
+                const filteredProduct = cart.filter(function (product) {
+                    return product.id === id;
+                })
+                if (filteredProduct.length > 0) {
+                    filteredProduct[0].count -= 1;
+                    const temp  = filteredProduct[0].count * filteredProduct[0].productPrice;
+                    filteredProduct[0].productPrice = temp / (filteredProduct[0].count+1);
+                    fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
+                        if (err) {
+                            response.status(500);
+                            console.log(err);
+                        }
+                        else {
+                            response.status(200);
+                            response.redirect("/cart");
+                        }
+                    });
+                }
+                else {
+                    response.status(404);
+                    response.send("Product not found");
+                }
+            } catch (error) {
+                response.status(500);
+                console.log(error);
+            }
+        }
+    })
+})
+app.post("/deleteitem", function (request, response) {
+    const id = request.query.id;
+    fs.readFile("cart.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            if (data.length === 0) {
+                data = "[]";
+            }
+            try {
+                const cart = JSON.parse(data);
+                const filteredProduct = cart.filter(function (product) {
+                    return product.id === id;
+                })
+                if (filteredProduct.length > 0) {
+                    const index = cart.indexOf(filteredProduct[0]);
+                    cart.splice(index, 1);
+                    fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
+                        if (err) {
+                            response.status(500);
+                            console.log(err);
+                        }
+                        else {
+                            response.status(200);
+                            response.redirect("/cart");
+                        }
+                    });
                 }
                 else {
                     response.status(404);
