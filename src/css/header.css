@@ -241,9 +241,10 @@ a:hover {
 
 #btnlogout {
     --color: #560bad;
+    padding: 0px 0.5rem 0px 0.5rem;
     font-family: inherit;
     display: inline-block;
-    width: 5em;
+    width: auto;
     height: 2.2em;
     line-height: 1.5em;
     margin: 7px;
