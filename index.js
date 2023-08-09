@@ -1,7 +1,15 @@
 const login = require("./utils/authentication/login");
 const signup = require("./utils/authentication/signup");
 const logout = require("./utils/authentication/logout");
+const verifyUser = require("./utils/authentication/verifyuser");
 const forgotmail = require("./utils/authentication/forgotmail");
+const products = require("./utils/product/adminProducts");
+const forgotPass = require("./utils/authentication/forgotPassword");
+const changePassword = require("./utils/authentication/changePassword");
+const cartItem = require("./utils/product/cartItem");
+const addCounter = require("./utils/product/addCounter");
+const subCounter = require("./utils/product/subCounter");
+const deleteItem = require("./utils/product/deleteItem");
 const express = require("express");
 var session = require('express-session')
 const multer = require('multer')
@@ -76,47 +84,6 @@ app.get("/signup", function (request, response) {
         response.render("signup", { username: request.session.username, email: Email });
     }
 })
-app.get("/verify", function (request, response) {
-    const id = request.query.id;
-    fs.readFile("user.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const users = JSON.parse(data);
-                const filteredUser = users.filter(function (user) {
-                    return user.id === id;
-                })
-                if (filteredUser.length > 0) {
-                    filteredUser[0].verified = true;
-                    fs.writeFile("user.txt", JSON.stringify(users, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/login");
-                        }
-                    });
-                }
-                else {
-                    response.status(404);
-                    response.send("User not found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
-})
-
 app.get("/login", function (request, response) {
     const user = request.session.usernotfound;
     request.session.usernotfound = false;
@@ -147,7 +114,6 @@ app.get("/data", function (request, response) {
     })
 })
 app.get("/carddata", function (request, response) {
-
     fs.readFile("cart.txt", "utf-8", function (error, data) {
         if (error) {
             response.status(500);
@@ -161,52 +127,6 @@ app.get("/carddata", function (request, response) {
             response.send(filteredProduct);
         }
     })
-})
-app.post("/product", function (request, response) {
-    const productName = request.body.productName;
-    const productPrice = request.body.productPrice;
-    const productDescription = request.body.productDescription;
-    const productQuantity = request.body.productQuantity;
-    const avtar = request.file;
-    const num = uid();
-    const newProduct = {
-        productName: productName,
-        productPrice: productPrice,
-        productDescription: productDescription,
-        productQuantity: productQuantity,
-        avtar: avtar.filename,
-        id: num,
-        username: null,
-        count: 1    
-        }
-        fs.readFile("products.txt", "utf-8", function (error, data) {
-            if (error) {
-                response.status(500);
-                console.log(error);
-            }
-            else {
-                if (data.length === 0) {
-                    data = "[]";
-                }
-                try {
-                    const products = JSON.parse(data);
-                    products.push(newProduct);
-                    fs.writeFile("products.txt", JSON.stringify(products, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/admin");
-                        }
-                    });
-                } catch (error) {
-                    response.status(500);
-                    console.log(error);
-                }
-            }
-        })
 })
 app.get("/forgot", function (request, response) {
     const email = request.query.email;
@@ -222,287 +142,21 @@ app.post("/forgotmail", function (request, response) {
     forgotmail(email);
     response.redirect("/signup");
 })  
-app.post("/forgot", function (request, response) {
-    const email = request.session.email;
-    const password = request.body.confirmpassword
-    fs.readFile("user.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const users = JSON.parse(data);
-                const filteredUser = users.filter(function (user) {
-                    return user.email === email;
-                })
-                if (filteredUser.length > 0) {
-                    filteredUser[0].password = password;
-                    fs.writeFile("user.txt", JSON.stringify(users, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/login");
-                        }
-                    });
-                }
-                else {
-                    response.status(404);
-                    response.send("User notm found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
-})
 app.get("/changepassword", function (request, response) {
     response.render("changepassword");
-})
-app.post("/changepassword", function (request, response) {
-    const email = request.body.email;
-    const password = request.body.confirmpassword
-    fs.readFile("user.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const users = JSON.parse(data);
-                const filteredUser = users.filter(function (user) {
-                    return user.email === email;
-                })
-                if (filteredUser.length > 0) {
-                    filteredUser[0].password = password;
-                    fs.writeFile("user.txt", JSON.stringify(users, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/");
-                        }
-                    });
-                }
-                else {
-                    response.status(404);
-                    response.send("User not found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
 })
 app.get("/cart", function (request, response) {
     response.render("cart", { username: request.session.username });
 })
-app.post("/cart", function (request, response) {
-    if(!request.session.isLoggedIn){
-        response.redirect("/login");
-        return;
-    }
-    const id = request.query.id;
-    const user = request.session.username;
-    fs.readFile("products.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const products = JSON.parse(data);
-                const filteredProduct = products.filter(function (product) {
-                    return product.id === id;
-                })
-                if (filteredProduct.length > 0) {
-                    filteredProduct[0].username = user;
-                    filteredProduct[0].count = 1;
-
-                    fs.readFile("cart.txt", "utf-8", function (error, data) {
-                        if (error) {
-                            response.status(500);
-                            console.log(error);
-                        }
-                        else {
-                            if (data.length === 0) {
-                                data = "[]";
-                            }
-                            try {
-                                const cart = JSON.parse(data);
-                                cart.push(filteredProduct[0]);
-                                fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
-                                    if (err) {
-                                        response.status(500);
-                                        console.log(err);
-                                    }
-                                    else {
-                                        response.status(200);
-                                        response.redirect("/cart");
-                                    }
-                                });
-                            } catch (error) {
-                                response.status(500);
-                                console.log(error);
-                            }
-                        }
-                    })
-                }
-                else {
-                    response.status(404);
-                    response.send("Product not found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
-})
-app.post("/add", function (request, response) {
-    const id = request.query.id;
-    fs.readFile("cart.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const cart = JSON.parse(data);
-                const filteredProduct = cart.filter(function (product) {
-                    return product.id === id;
-                })
-
-                if (filteredProduct.length > 0) {
-                    filteredProduct[0].count += 1;
-                    const temp  = filteredProduct[0].count * filteredProduct[0].productPrice;
-                    filteredProduct[0].productPrice = temp / (filteredProduct[0].count-1);
-
-                    fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/cart");
-                        }
-                    });
-                }
-                else {
-                    response.status(404);
-                    response.send("Product not found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
-})
-app.post("/sub", function (request, response) {
-    const id = request.query.id;
-    fs.readFile("cart.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const cart = JSON.parse(data);
-                const filteredProduct = cart.filter(function (product) {
-                    return product.id === id;
-                })
-                if (filteredProduct.length > 0) {
-                    filteredProduct[0].count -= 1;
-                    const temp  = filteredProduct[0].count * filteredProduct[0].productPrice;
-                    filteredProduct[0].productPrice = temp / (filteredProduct[0].count+1);
-                    fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/cart");
-                        }
-                    });
-                }
-                else {
-                    response.status(404);
-                    response.send("Product not found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
-})
-app.post("/deleteitem", function (request, response) {
-    const id = request.query.id;
-    fs.readFile("cart.txt", "utf-8", function (error, data) {
-        if (error) {
-            response.status(500);
-            console.log(error);
-        }
-        else {
-            if (data.length === 0) {
-                data = "[]";
-            }
-            try {
-                const cart = JSON.parse(data);
-                const filteredProduct = cart.filter(function (product) {
-                    return product.id === id;
-                })
-                if (filteredProduct.length > 0) {
-                    const index = cart.indexOf(filteredProduct[0]);
-                    cart.splice(index, 1);
-                    fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
-                        if (err) {
-                            response.status(500);
-                            console.log(err);
-                        }
-                        else {
-                            response.status(200);
-                            response.redirect("/cart");
-                        }
-                    });
-                }
-                else {
-                    response.status(404);
-                    response.send("Product not found");
-                }
-            } catch (error) {
-                response.status(500);
-                console.log(error);
-            }
-        }
-    })
-})
 app.post("/signup", signup);
 app.post("/login", login);
 app.get("/logout", logout);
+app.get("/verify", verifyUser);
+app.post("/product", products);
+app.post("/forgot",forgotPass);
+app.post("/changepassword",changePassword);
+app.post("/cart", cartItem);
+app.post("/add", addCounter);
+app.post("/sub", subCounter);
+app.get("/deleteitem", deleteItem);
 app.listen(8080, () => console.log(`Example app listening on port 8080!`))

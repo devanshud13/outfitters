@@ -21,7 +21,7 @@ const forgotmail = async (email) => {
       subject: "reset your password from OUTFITTERS",
       html: `
       <h3>Click on the link below to Reset your password</h3>
-      <a href="https://179a-223-178-213-17.ngrok-free.app/forgot?email=${email}">Verify</a>`
+      <a href="https://299a-223-178-213-17.ngrok-free.app/forgot?email=${email}">Verify</a>`
     };
     try {
       const info = await transporter.sendMail(mailOptions);

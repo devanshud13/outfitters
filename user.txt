@@ -12,5 +12,12 @@
     "email": "devanshubhatnagar01@gmail.com",
     "id": "a579ce10a0f",
     "verified": true
+  },
+  {
+    "username": "sunil",
+    "password": "1",
+    "email": "sumit.kumar9986@gmail.com",
+    "id": "be40b37de4e",
+    "verified": false
   }
 ]

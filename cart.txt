@@ -10,12 +10,12 @@
     "count": 1
   },
   {
-    "productName": "ADIDAS | MK-654 | Exclusive Edition",
-    "productPrice": 5000,
-    "productDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "productQuantity": "600",
-    "avtar": "a53df84d468ba7e56862cb84cdd9ac64",
-    "id": "5279636e737",
+    "productName": "GIRL | TSHIRT | BLUE COLOR | PREMIUM",
+    "productPrice": "499",
+    "productDescription": "BLUE tshirt only for girls",
+    "productQuantity": "5",
+    "avtar": "9ef40c6f313d33d671bf4cbe46a17505",
+    "id": "61daaee40ad",
     "username": "Devanshu",
     "count": 1
   }
