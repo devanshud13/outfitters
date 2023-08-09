@@ -64,6 +64,9 @@ app.get("/forgotpass.js",function(request,response){
 app.get("/cart.js",function(request,response){  
     response.sendFile(__dirname+"/src/js/cart.js");
 })
+app.get("/admin.js",function(request,response){
+    response.sendFile(__dirname+"/src/js/admin.js");
+})
 app.get("/signup", function (request, response) {
     const Email = request.session.email;
     request.session.email = null;
@@ -308,6 +311,10 @@ app.get("/cart", function (request, response) {
     response.render("cart", { username: request.session.username });
 })
 app.post("/cart", function (request, response) {
+    if(!request.session.isLoggedIn){
+        response.redirect("/login");
+        return;
+    }
     const id = request.query.id;
     const user = request.session.username;
     fs.readFile("products.txt", "utf-8", function (error, data) {
