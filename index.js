@@ -10,7 +10,6 @@ const cartItem = require("./utils/product/cartItem");
 const addCounter = require("./utils/product/addCounter");
 const subCounter = require("./utils/product/subCounter");
 const deleteItem = require("./utils/product/deleteItem");
-const getData = require("./utils/fetchData/getData");
 const cardData = require("./utils/fetchData/cardData");
 const express = require("express");
 var session = require('express-session')
@@ -103,7 +102,19 @@ app.get("/admin", function (request, response) {
         response.render("login", { username: request.session.username, usernotfound: false });
     }
 })
-app.get("/data", getData);
+app.get("/data",function  (request, response) {
+    fs.readFile("products.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            response.status(200);
+            response.send(data);
+        }
+    })
+})
+
 app.get("/cardData",cardData);
 app.get("/forgot", function (request, response) {
     const email = request.query.email;

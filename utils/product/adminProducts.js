@@ -15,8 +15,6 @@ function products(request, response) {
             productQuantity: productQuantity,
             avtar: avtar.filename,
             id: num,
-            username: null,
-            count: 1,
         };
         fs.readFile("products.txt", "utf-8", function (error, data) {
             if (error) {

@@ -112,11 +112,6 @@ function showProducts(start, end) {
 <div class="card__title">${productName}</div>
 <div class="card__wrapper">
         <div class="card__price">₹ ${productPrice}</div>
-        <div class="card__counter">
-            <button class="card__btn">-</button>
-            <div class="card__counter-score">1</div>
-            <button class="card__btn card__btn-plus">+</button>
-        </div>
     </div> 
 <div class="buttons">
 <form action="/cart?id=${Id}" method="POST">
@@ -183,11 +178,6 @@ function showProducts(start, end) {
 <div class="card__title">${productName}</div>
 <div class="card__wrapper">
         <div class="card__price">₹ ${productPrice}</div>
-        <div class="card__counter">
-            <button class="card__btn">-</button>
-            <div class="card__counter-score">1</div>
-            <button class="card__btn card__btn-plus">+</button>
-        </div>
     </div> 
 <div class="buttons">
 <form action="/cart?id=${Id}" method="POST">
