@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 
-function deleteItem(request, response) {
+function deleteItem (request, response) {
     const id = request.query.id;
     fs.readFile("cart.txt", "utf-8", function (error, data) {
       if (error) {

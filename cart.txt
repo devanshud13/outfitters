@@ -10,12 +10,12 @@
     "count": 1
   },
   {
-    "productName": "GIRL | TSHIRT | BLUE COLOR | PREMIUM",
-    "productPrice": "499",
-    "productDescription": "BLUE tshirt only for girls",
-    "productQuantity": "5",
-    "avtar": "9ef40c6f313d33d671bf4cbe46a17505",
-    "id": "61daaee40ad",
+    "productName": "SPARX | FLAT SHOES | PREMIUM",
+    "productPrice": "699",
+    "productDescription": "SPARX shoes from amazon",
+    "productQuantity": "500",
+    "avtar": "b2d0b78b8e5f48c67d67d6796e2ba2bc",
+    "id": "b61daaee40a",
     "username": "Devanshu",
     "count": 1
   }

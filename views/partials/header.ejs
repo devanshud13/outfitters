@@ -14,6 +14,9 @@
             <%} else {%>
               <div class="username"></div>
           <%} %>
+          <%if(username == "Devanshu"){%>
+            <a href="/admin"><button id="btnlogout">AddProducts</button></a>
+          <%} %>
           <%if(username){%>
             <a href="/cart"><button id="btnlogout">my cart</button></a>
             <a href="/changepassword"><button id="btnlogout"> change password</button></a>

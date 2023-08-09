@@ -37,16 +37,13 @@ function cartItem(request, response) {
                 try {
                   const cart = JSON.parse(data);
                   cart.push(filteredProduct[0]);
-                  fs.writeFile(
-                    "cart.txt",
-                    JSON.stringify(cart, null, 2),
-                    function (err) {
+                  fs.writeFile("cart.txt", JSON.stringify(cart, null, 2),function (err) {
                       if (err) {
                         response.status(500);
                         console.log(err);
                       } else {
                         response.status(200);
-                        response.redirect("/cart");
+                        response.redirect("/");
                       }
                     }
                   );

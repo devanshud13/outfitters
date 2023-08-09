@@ -1,7 +1,7 @@
 // sub.js
 
 const fs = require("fs");
-
+const deleteItem = require("./deleteItem");
 function subCount(request, response) {
     const id = request.query.id;
     fs.readFile("cart.txt", "utf-8", function (error, data) {
@@ -19,13 +19,9 @@ function subCount(request, response) {
           });
           if (filteredProduct.length > 0) {
             filteredProduct[0].count -= 1;
-            const temp =
-              filteredProduct[0].count * filteredProduct[0].productPrice;
+            const temp = filteredProduct[0].count * filteredProduct[0].productPrice;
             filteredProduct[0].productPrice = temp / (filteredProduct[0].count + 1);
-            fs.writeFile(
-              "cart.txt",
-              JSON.stringify(cart, null, 2),
-              function (err) {
+            fs.writeFile("cart.txt",JSON.stringify(cart, null, 2),function (err) {
                 if (err) {
                   response.status(500);
                   console.log(err);
@@ -35,7 +31,11 @@ function subCount(request, response) {
                 }
               }
             );
-          } else {
+            if(filteredProduct.count === 0){
+                deleteItem(request, response);
+            }
+          } 
+          else {
             response.status(404);
             response.send("Product not found");
           }

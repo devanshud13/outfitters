@@ -158,5 +158,5 @@ app.post("/changepassword",changePassword);
 app.post("/cart", cartItem);
 app.post("/add", addCounter);
 app.post("/sub", subCounter);
-app.get("/deleteitem", deleteItem);
-app.listen(8080, () => console.log(`Example app listening on port 8080!`))
+app.post("/deleteitem", deleteItem);
+app.listen(8080, () => console.log(`Example app listening on port 8080`))
