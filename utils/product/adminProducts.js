@@ -1,5 +1,5 @@
 const fs = require("fs");
-const uid = require("uid");
+const {uid} = require("uid");
 
 function products(request, response) {
         const productName = request.body.productName;

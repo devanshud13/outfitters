@@ -1,99 +1,22 @@
 [
   {
-    "productName": "NIKE | Air Jordan | Sneakers | Orignal",
-    "productPrice": "80000",
-    "productDescription": "Air jordan exported from thailand in india ",
-    "productQuantity": 9,
-    "avtar": "e59cbefb0597d19d26cd2fcdc70bacc0",
-    "id": "99dd08a3498",
-    "username": null
+    "productName": "MACBOOK M1 | A1 BIONIC CHIP | PREMIUM QUALITY",
+    "productPrice": "100000",
+    "productDescription": "STRIKINGLY THIN DESIGN – The redesigned MacBook Air is more portable than ever and weighs just 1.24 kg (2.7 pounds). It’s the ultra-capable laptop that lets you work, play or create just about anything — anywhere.\r\nSUPERCHARGED BY M2 – Get more done faster with a next-generation 8-core CPU, up to 10-core GPU and up to 24GB of unified memory.\r\nUP TO 18 HOURS OF BATTERY LIFE – Go all day and into the night, thanks to the power-efficient performance of the Apple M2 chip.\r\nBIG, BEAUTIFUL DISPLAY – The 34.46-centimetre (13.6-inch) Liquid Retina display features over 500 nits of brightness, P3 wide colour and support for one billion colours for vibrant images and incredible detail.\r\nADVANCED CAMERA AND AUDIO – Look sharp and sound great with a 1080p FaceTime HD camera, three-mic array and four-speaker sound system with Spatial Audio.\r\nVERSATILE CONNECTIVITY – MacBook Air features a MagSafe charging port, two Thunderbolt ports and a headphone jack.\r\nEASY TO USE – Your Mac feels familiar from the moment you turn it on and works seamlessly with all your Apple devices.",
+    "productQuantity": "20",
+    "avtar": "482d3b81915f58d209244350d7ea1549",
+    "id": "7af90f7db6a",
+    "username": null,
+    "count": 1
   },
   {
-    "productName": "ADIDAS | MK-654 | Exclusive Edition",
-    "productPrice": "5000",
-    "productDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "productQuantity": "600",
-    "avtar": "a53df84d468ba7e56862cb84cdd9ac64",
-    "id": "5279636e737"
-  },
-  {
-    "productName": "NIKE | Orange Dunks | Exclusive Edition",
-    "productPrice": "15999",
-    "productDescription": "orange sneakers importes from singapore",
-    "productQuantity": "2",
-    "avtar": "342fb10da342cea1d4767d6942a2a455",
-    "id": "10b61daaee4"
-  },
-  {
-    "productName": "LOUIS VUTION | exclusive",
-    "productPrice": "112220",
-    "productDescription": "A premium shoe from ambani",
-    "productQuantity": "1",
-    "avtar": "191113678273b3886b30d8c22cc054fd",
-    "id": "0b61daaee40"
-  },
-  {
-    "productName": "SPARX | FLAT SHOES | PREMIUM",
-    "productPrice": "699",
-    "productDescription": "SPARX shoes from amazon",
-    "productQuantity": "500",
-    "avtar": "b2d0b78b8e5f48c67d67d6796e2ba2bc",
-    "id": "b61daaee40a"
-  },
-  {
-    "productName": "GIRL | TSHIRT | BLUE COLOR | PREMIUM",
-    "productPrice": "499",
-    "productDescription": "BLUE tshirt only for girls",
-    "productQuantity": "5",
-    "avtar": "9ef40c6f313d33d671bf4cbe46a17505",
-    "id": "61daaee40ad"
-  },
-  {
-    "productName": "NIKE | Air Jordan | Sneakers | Orignal",
-    "productPrice": "80000",
-    "productDescription": "Air jordan exported from thailand in india ",
-    "productQuantity": "10",
-    "avtar": "e59cbefb0597d19d26cd2fcdc70bacc0",
-    "id": "99dd08a3498"
-  },
-  {
-    "productName": "ADIDAS | MK-654 | Exclusive Edition",
-    "productPrice": "5000",
-    "productDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "productQuantity": "600",
-    "avtar": "a53df84d468ba7e56862cb84cdd9ac64",
-    "id": "5279636e737"
-  },
-  {
-    "productName": "NIKE | Orange Dunks | Exclusive Edition",
-    "productPrice": "15999",
-    "productDescription": "orange sneakers importes from singapore",
-    "productQuantity": "2",
-    "avtar": "342fb10da342cea1d4767d6942a2a455",
-    "id": "10b61daaee4"
-  },
-  {
-    "productName": "LOUIS VUTION | exclusive",
-    "productPrice": "112220",
-    "productDescription": "A premium shoe from ambani",
-    "productQuantity": "1",
-    "avtar": "191113678273b3886b30d8c22cc054fd",
-    "id": "0b61daaee40"
-  },
-  {
-    "productName": "SPARX | FLAT SHOES | PREMIUM",
-    "productPrice": "699",
-    "productDescription": "SPARX shoes from amazon",
-    "productQuantity": "500",
-    "avtar": "b2d0b78b8e5f48c67d67d6796e2ba2bc",
-    "id": "b61daaee40a"
-  },
-  {
-    "productName": "GIRL | TSHIRT | BLUE COLOR | PREMIUM",
-    "productPrice": "499",
-    "productDescription": "BLUE tshirt only for girls",
-    "productQuantity": "5",
-    "avtar": "9ef40c6f313d33d671bf4cbe46a17505",
-    "id": "61daaee40ad"
+    "productName": "ASUS | ZENBOOK | 512GB SSD | 8GB RAM",
+    "productPrice": "59800",
+    "productDescription": "Processor: Intel Core i5-13500H Processor 2.6 GHz (18MB Cache, up to 4.7 GHz, 12 cores, 16 Threads)\r\nMemory: 16GB LPDDR5 4800MHz on board with | Storage: 512GB M.2 NVMe PCIe 4.0 SSD\r\nDisplay: 15.6-inch (39.62 cm) 2.8K (2880 x 1620) OLED 16:9 aspect ratio, 120Hz refresh rate Display, 0.2ms response time 600nits HDR peak brightness VESA CERTIFIED Display HDR True Black 600 100% DCI-P3 color gamut PANTONE Validated Glossy display\r\nGraphics: Integrated Integrated Intel Iris Xe Graphics\r\nOperating System: Windows 11 Home with lifetime validity | Software Included: Pre-Installed Office Home and Student 2021 | 1-Year McAfee Anti-Virus",
+    "productQuantity": "6",
+    "avtar": "5e90fb17df9e3f1e1745ae76d0fa7465",
+    "id": "af90f7db6a6",
+    "username": null,
+    "count": 1
   }
 ]

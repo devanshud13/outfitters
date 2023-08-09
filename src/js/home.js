@@ -146,7 +146,7 @@ function showProducts(start, end) {
 <div class="card__title" id="pname" >${productName}</div>
 <div class="card__subtitle" id="pdesc">${productDescription}</div>
 <div class="card__wrapper">
-      <div class="card__price" id="pprice" > ${productPrice}</div>
+      <div class="card__price" id="pprice" >₹ ${productPrice}</div>
   </div> 
 
 
@@ -218,7 +218,7 @@ function showProducts(start, end) {
 <div class="card__title" id="pname" >${productName}</div>
 <div class="card__subtitle" id="pdesc">${productDescription}</div>
 <div class="card__wrapper">
-      <div class="card__price" id="pprice" > ${productPrice}</div>
+      <div class="card__price" id="pprice" >₹ ${productPrice}</div>
   </div> 
 
 
@@ -252,7 +252,6 @@ function loadmore(start, end) {
     main.appendChild(btn);
   }
   else {
-    console.log(end);
     document.getElementById("loadmore").style.backgroundColor = "red";
   }
 }
