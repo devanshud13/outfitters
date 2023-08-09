@@ -42,7 +42,7 @@
 //       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 //     </div>
 //     <div class="modal-body">
-      
+
 
 
 
@@ -94,18 +94,18 @@ fetch("/data")
 
 function showProducts(start, end) {
   const main = document.getElementById("main");
-if (end < products.length) {
-  for (let i = start; i < end; i++) {
-    const product = products[i];
-    const productName = product.productName;
-    const productPrice = product.productPrice;
-    const productDescription = product.productDescription;
-    const avtar = product.avtar;
-    const Id = product.id;
+  if (end < products.length) {
+    for (let i = start; i < end; i++) {
+      const product = products[i];
+      const productName = product.productName;
+      const productPrice = product.productPrice;
+      const productDescription = product.productDescription;
+      const avtar = product.avtar;
+      const Id = product.id;
 
-    const card = document.createElement("div");
-    card.setAttribute("class", "card");
-    card.innerHTML = `
+      const card = document.createElement("div");
+      card.setAttribute("class", "card");
+      card.innerHTML = `
 <div class="card__img">
 <img src="/${avtar}" draggable="false" alt="product image" class="card-image">
 </div>
@@ -119,7 +119,9 @@ if (end < products.length) {
         </div>
     </div> 
 <div class="buttons">
-<button class="add-to-cart">Add to Cart</button>
+<form action="/cart?id=${Id}" method="POST">
+<button type="submit" class="add-to-cart" id="cart">Add to Cart</button>
+</form>
 <button type="button" class="btn btn-success" id = ${Id} onclick= "handleModal(this.id,'${product.productDescription}','${avtar}','${productName}','${productPrice}')" data-bs-toggle="modal" data-bs-target="#exampleModal">
   View Details
 </button>
@@ -158,10 +160,10 @@ if (end < products.length) {
 
 
 </div>`
-    main.appendChild(card);
+      main.appendChild(card);
+    }
   }
-  }
-  else{
+  else {
     const temp = end - products.length;
     end = end - temp;
     for (let i = start; i < end; i++) {
@@ -171,7 +173,7 @@ if (end < products.length) {
       const productDescription = product.productDescription;
       const avtar = product.avtar;
       const Id = product.id;
-  
+
       const card = document.createElement("div");
       card.setAttribute("class", "card");
       card.innerHTML = `
@@ -188,7 +190,10 @@ if (end < products.length) {
         </div>
     </div> 
 <div class="buttons">
-<button class="add-to-cart">Add to Cart</button>
+<form action="/cart?id=${Id}" method="POST">
+<button type="submit" class="add-to-cart" id="cart">Add to Cart</button>
+</form>
+
 <button type="button" class="btn btn-success" id = ${Id} onclick= "handleModal(this.id,'${product.productDescription}','${avtar}','${productName}','${productPrice}')" data-bs-toggle="modal" data-bs-target="#exampleModal">
   View Details
 </button>

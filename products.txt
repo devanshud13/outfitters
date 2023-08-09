@@ -3,9 +3,10 @@
     "productName": "NIKE | Air Jordan | Sneakers | Orignal",
     "productPrice": "80000",
     "productDescription": "Air jordan exported from thailand in india ",
-    "productQuantity": "10",
+    "productQuantity": 9,
     "avtar": "e59cbefb0597d19d26cd2fcdc70bacc0",
-    "id": "99dd08a3498"
+    "id": "99dd08a3498",
+    "username": null
   },
   {
     "productName": "ADIDAS | MK-654 | Exclusive Edition",

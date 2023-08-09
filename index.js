@@ -52,11 +52,17 @@ app.get("/signup.css",function(request,response){
 app.get("/admin.css",function(request,response){
     response.sendFile(__dirname+"/src/css/admin.css");
 })
+app.get("/cart.css",function(request,response){
+    response.sendFile(__dirname+"/src/css/cart.css");
+})
 app.get("/home.js",function(request,response){
     response.sendFile(__dirname+"/src/js/home.js");
 })
 app.get("/forgotpass.js",function(request,response){
     response.sendFile(__dirname+"/src/js/forgotpass.js");
+})
+app.get("/cart.js",function(request,response){  
+    response.sendFile(__dirname+"/src/js/cart.js");
 })
 app.get("/signup", function (request, response) {
     const Email = request.session.email;
@@ -137,6 +143,22 @@ app.get("/data", function (request, response) {
         }
     })
 })
+app.get("/carddata", function (request, response) {
+
+    fs.readFile("cart.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            response.status(200);
+            const filteredProduct = JSON.parse(data).filter(function (product) {
+                return product.username === request.session.username;
+            })
+            response.send(filteredProduct);
+        }
+    })
+})
 app.post("/product", function (request, response) {
     const productName = request.body.productName;
     const productPrice = request.body.productPrice;
@@ -150,7 +172,8 @@ app.post("/product", function (request, response) {
         productDescription: productDescription,
         productQuantity: productQuantity,
         avtar: avtar.filename,
-        id: num
+        id: num,
+        username: null
         }
         fs.readFile("products.txt", "utf-8", function (error, data) {
             if (error) {
@@ -272,6 +295,78 @@ app.post("/changepassword", function (request, response) {
                 else {
                     response.status(404);
                     response.send("User not found");
+                }
+            } catch (error) {
+                response.status(500);
+                console.log(error);
+            }
+        }
+    })
+})
+app.get("/cart", function (request, response) {
+    response.render("cart", { username: request.session.username });
+})
+app.post("/cart", function (request, response) {
+    const id = request.query.id;
+    const user = request.session.username;
+    fs.readFile("products.txt", "utf-8", function (error, data) {
+        if (error) {
+            response.status(500);
+            console.log(error);
+        }
+        else {
+            if (data.length === 0) {
+                data = "[]";
+            }
+            try {
+                const products = JSON.parse(data);
+                const filteredProduct = products.filter(function (product) {
+                    return product.id === id;
+                })
+                if (filteredProduct.length > 0) {
+                    filteredProduct[0].username = user;
+                    // fs.writeFile("products.txt", JSON.stringify(products, null, 2), function (err) {
+                    //     if (err) {
+                    //         response.status(500);
+                    //         console.log(err);
+                    //     }
+                    //     else {
+                    //         response.status(200);
+                    //         response.redirect("/cart");
+                    //     }
+                    // });
+                    fs.readFile("cart.txt", "utf-8", function (error, data) {
+                        if (error) {
+                            response.status(500);
+                            console.log(error);
+                        }
+                        else {
+                            if (data.length === 0) {
+                                data = "[]";
+                            }
+                            try {
+                                const cart = JSON.parse(data);
+                                cart.push(filteredProduct[0]);
+                                fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (err) {
+                                    if (err) {
+                                        response.status(500);
+                                        console.log(err);
+                                    }
+                                    else {
+                                        response.status(200);
+                                        response.redirect("/cart");
+                                    }
+                                });
+                            } catch (error) {
+                                response.status(500);
+                                console.log(error);
+                            }
+                        }
+                    })
+                }
+                else {
+                    response.status(404);
+                    response.send("Product not found");
                 }
             } catch (error) {
                 response.status(500);
