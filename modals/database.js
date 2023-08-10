@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-const uri =""
+require('dotenv').config()
+const uri =process.env.MONGO_URI
 async function connect() {
     try{
         await mongoose.connect(uri)
