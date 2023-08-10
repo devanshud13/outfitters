@@ -21,7 +21,7 @@ const verifymail = async (email, username, id) => {
       subject: "Verify your email",
       html: `<h1>Hi ${username}</h1>
       <h3>Click on the link below to verify your email</h3>
-      <a href="https://299a-223-178-213-17.ngrok-free.app/verify?id=${id}">Verify</a>`
+      <a href="https://dca3-223-178-213-17.ngrok-free.app/verify?id=${id}">Verify</a>`
     };
     try {
       const info = await transporter.sendMail(mailOptions);

@@ -11,12 +11,16 @@ const addCounter = require("./utils/product/addCounter");
 const subCounter = require("./utils/product/subCounter");
 const deleteItem = require("./utils/product/deleteItem");
 const cardData = require("./utils/fetchData/cardData");
+const connect = require("./modals/database");
 const express = require("express");
 var session = require('express-session')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 const app = express();
 const fs = require("fs");
+const User = require("./modals/user");
+const productData = require("./modals/product");
+const cartData = require("./modals/cartData");
 const {uid}  = require("uid");
 
 
@@ -147,4 +151,5 @@ app.post("/cart", cartItem);
 app.post("/add", addCounter);
 app.post("/sub", subCounter);
 app.post("/deleteitem", deleteItem);
+connect();
 app.listen(8080, () => console.log(`Example app listening on port 8080`))
