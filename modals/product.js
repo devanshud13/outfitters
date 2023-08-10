@@ -21,11 +21,6 @@ const productSchema = new mongoose.Schema({
     avtar: {
         type: String,
         required: true
-    },
-    Id: {
-        type: String,
-        required: true,
-        unique: true
     }
 });
 

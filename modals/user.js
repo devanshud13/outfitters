@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true
     },
     password: {
         type: String,
@@ -17,11 +16,6 @@ const userSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         default: true
-    },
-    id: {
-        type: String,
-        required: true,
-        unique: true
     },
     verified: {
         type: Boolean,

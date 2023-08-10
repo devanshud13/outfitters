@@ -101,7 +101,7 @@ function showProducts(start, end) {
       const productPrice = product.productPrice;
       const productDescription = product.productDescription;
       const avtar = product.avtar;
-      const Id = product.id;
+      const Id = product._id;
 
       const card = document.createElement("div");
       card.setAttribute("class", "card");
@@ -167,7 +167,7 @@ function showProducts(start, end) {
       const productPrice = product.productPrice;
       const productDescription = product.productDescription;
       const avtar = product.avtar;
-      const Id = product.id;
+      const Id = product._id;
 
       const card = document.createElement("div");
       card.setAttribute("class", "card");

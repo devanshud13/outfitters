@@ -1,45 +1,22 @@
-// deleteItem.js
+const Cart = require("../../modals/cartData");
 
-const fs = require("fs");
+function deleteItem(request, response) {
+  const id = request.query.id;
 
-function deleteItem (request, response) {
-    const id = request.query.id;
-    fs.readFile("cart.txt", "utf-8", function (error, data) {
-      if (error) {
-        response.status(500);
-        console.log(error);
+  Cart.findOneAndDelete({ _id: id, username: request.session.username })
+    .then(function (deletedItem) {
+      if (deletedItem) {
+        response.status(200);
+        response.redirect("/cart");
       } else {
-        if (data.length === 0) {
-          data = "[]";
-        }
-        try {
-          const cart = JSON.parse(data);
-          const filteredProduct = cart.filter(function (product) {
-            return product.id === id;
-          });
-          if (filteredProduct.length > 0) {
-            const index = cart.indexOf(filteredProduct[0]);
-            cart.splice(index, 1);
-            fs.writeFile("cart.txt", JSON.stringify(cart, null, 2), function (
-              err
-            ) {
-              if (err) {
-                response.status(500);
-                console.log(err);
-              } else {
-                response.status(200);
-                response.redirect("/cart");
-              }
-            });
-          } else {
-            response.status(404);
-            response.send("Product not found");
-          }
-        } catch (error) {
-          response.status(500);
-          console.log(error);
-        }
+        response.status(404);
+        response.send("Product not found");
       }
+    })
+    .catch(function (error) {
+      response.status(500);
+      console.log(error);
+      response.send("An error occurred while deleting the product from the cart");
     });
 }
 

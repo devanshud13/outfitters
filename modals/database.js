@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri ="mongodb+srv://devanshu:devanshu09@cluster0.21ojnza.mongodb.net/Ecommerce?retryWrites=true&w=majority"
+const uri =""
 async function connect() {
     try{
         await mongoose.connect(uri)

@@ -22,11 +22,6 @@ const cartSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Id: {
-        type: String,
-        required: true,
-        unique: true
-    },
     username: {
         type: String,
         required: true

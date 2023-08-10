@@ -10,7 +10,7 @@ fetch("/carddata")
             const productDescription = product.productDescription;
             const count = product.count;
             const avtar = product.avtar;
-            const Id = product.id;
+            const Id = product._id;
             const main = document.getElementById("main-cart");
             const card = document.createElement("div");
             card.setAttribute("class", "card");
