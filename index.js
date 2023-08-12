@@ -57,7 +57,7 @@ app.get('/', function(request,response){
         }
     })
     }else{
-        response.redirect("/login");
+        response.render("home",{username: null,id: null});
     }
     
 
@@ -138,10 +138,11 @@ app.get("/forgotmail", function (request, response) {
 })
 app.post("/forgotmail", function (request, response) {
     const email = request.body.email;
+    const host = request.headers.host;
   User.findOne({ email: email })
         .then((user) => {
             if (user) {
-                forgotmail(email,user._id);
+                forgotmail(host,email,user._id);
                 response.redirect("/signup");
             } else {
                 response.render("signup");

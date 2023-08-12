@@ -8,7 +8,7 @@ function signup(request, response) {
   const email = request.body.email;
   const password = request.body.password;
   const verify = false;
-
+  const host = request.headers.host;
   const newUser = new User({
     username: username,
     password: password,
@@ -25,7 +25,7 @@ function signup(request, response) {
         newUser.save()
           .then(function (user) {
             response.status(200);
-            verifymail(email, username, user._id);
+            verifymail(host,email, username, user._id);
             request.session.username = null;
             request.session.usernotfound = false;
             response.redirect("/login");

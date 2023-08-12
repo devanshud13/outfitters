@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const forgotmail = async (email,id) => {
+const forgotmail = async (host,email,id) => {
     let transporter;
     try {
       transporter = nodemailer.createTransport({
@@ -21,11 +21,11 @@ const forgotmail = async (email,id) => {
       subject: "reset your password from OUTFITTERS",
       html: `
       <h3>Click on the link below to Reset your password</h3>
-      <a href="https://1f87-223-178-210-8.ngrok-free.app/forgot?id=${id}">Verify</a>`
+      <a href="${host}/forgot?id=${id}">Verify</a>`
     };
     try {
       const info = await transporter.sendMail(mailOptions);
-      console.log("Email sent: " + info.response);
+      console.log("forgot mail Email sent");
     } catch (error) {
       console.log(error);
     }
