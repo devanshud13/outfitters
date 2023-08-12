@@ -1,10 +1,8 @@
 const User = require("../../modals/user");
-
 function forgotPass(request, response) {
-  const gmail = request.session.email;
+  const id = request.query.id;
   const confirmPassword = request.body.confirmpassword;
-  console.log(gmail);
-  User.findOne({ email: gmail})
+  User.findOne({ _id: id })
     .then(function (user) {
       if (!user) {
         request.session.usernotfound = true;

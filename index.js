@@ -46,7 +46,21 @@ app.use(express.static("src/images"));
 app.use(express.static("uploads"));
 app.set("view engine", "ejs");
 app.get('/', function(request,response){
-    response.render('home',{username: request.session.username});
+    const user = request.session.username;
+    if(request.session.isLoggedIn){
+       User.findOne({ username: user })
+    .then((user) => {
+        if (user) {
+            response.render('home',{username: user.username,id: user._id});
+        } else {
+            response.send("user not found");
+        }
+    })
+    }else{
+        response.redirect("/login");
+    }
+    
+
 })
 app.get("/home.css",function(request,response){
     response.sendFile(__dirname+"/src/css/home.css");
@@ -81,6 +95,9 @@ app.get("/cart.js",function(request,response){
 app.get("/admin.js",function(request,response){
     response.sendFile(__dirname+"/src/js/admin.js");
 })
+app.get("/changepass.js",function(request,response){
+    response.sendFile(__dirname+"/src/js/changepass.js");
+})
 app.get("/signup", function (request, response) {
     const Email = request.session.email;
     request.session.email = null;
@@ -107,22 +124,41 @@ app.get("/admin", function (request, response) {
         response.render("login", { username: request.session.username, usernotfound: false });
     }
 })
+// app.get("/forgot", function (request, response) {
+//     const email = request.query.email;
+//     request.session.email = email;
+//     response.render("forgotpass");
+// })
 app.get("/forgot", function (request, response) {
-    const email = request.query.email;
-    request.session.email = email;
-    response.render("forgotpass");
-
-})
+    const id = request.query.id;
+    response.render("forgotpass", { id: id });
+  });
 app.get("/forgotmail", function (request, response) {
     response.render("forgotmail");
 })
 app.post("/forgotmail", function (request, response) {
     const email = request.body.email;
-    forgotmail(email);
-    response.redirect("/signup");
+  User.findOne({ email: email })
+        .then((user) => {
+            if (user) {
+                forgotmail(email,user._id);
+                response.redirect("/signup");
+            } else {
+                response.render("signup");
+            }
+        })
 })  
 app.get("/changepassword", function (request, response) {
-    response.render("changepassword");
+    const id = request.query.id;
+    User.findOne({ _id: id })
+        .then((user) => {
+            if (user) {
+                response.render("changepassword", { id: user._id });
+            } else {
+                response.send("user not found");
+            }
+        })
+
 })
 app.get("/cart", function (request, response) {
     response.render("cart", { username: request.session.username });

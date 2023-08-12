@@ -1,14 +1,18 @@
 const User = require("../../modals/user");
 
 function changepassword(request, response) {
-  const email = request.body.email;
+console.log(request.session.email)
+  // const email = request.body.email;
+  const id = request.query.id;
+  console.log(id);
   const password = request.body.confirmpassword;
 
-  User.findOne({ email: email })
+  User.findOne({ _id: id })
     .then(function (user) {
       if (!user) {
         response.status(404);
         response.send("User not found");
+        console.log("error in changepassword")
       } else {
         user.password = password;
         user.save().then(function () {
