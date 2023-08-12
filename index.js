@@ -101,6 +101,9 @@ app.get("/admin.js",function(request,response){
 app.get("/changepass.js",function(request,response){
     response.sendFile(__dirname+"/src/js/changepass.js");
 })
+app.get("/signuppass.js",function(request,response){
+    response.sendFile(__dirname+"/src/js/signuppass.js");
+})
 app.get("/signup", function (request, response) {
     const Email = request.session.email;
     request.session.email = null;
@@ -169,7 +172,9 @@ app.get("/changepassword", function (request, response) {
 
 })
 app.get("/cart", function (request, response) {
-    response.render("cart", { username: request.session.username ,id: request.session.id});
+    const message = request.session.message;
+    request.session.message = null;
+    response.render("cart", { username: request.session.username ,id: request.session.id,message: message});
 })
 app.get("/cardData",cardData);
 app.get("/Data",getData);

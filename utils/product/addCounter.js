@@ -6,6 +6,7 @@ function addItem(request, response) {
   Cart.findOne({ _id: id, username: request.session.username })
     .then(function (cartItem) {
       if (cartItem) {
+        if(cartItem.productQuantity > cartItem.count){
         cartItem.count += 1;
         const temp = cartItem.count * cartItem.productPrice;
         cartItem.productPrice = temp / (cartItem.count - 1);
@@ -20,6 +21,12 @@ function addItem(request, response) {
             console.log(error);
             response.send("An error occurred while updating the cart item");
           });
+        }
+        else{
+          response.status(200);
+          request.session.message = `Only ${cartItem.productQuantity} ${cartItem.productName} are available`;
+          response.redirect("/cart");
+        }
       } else {
         response.status(404);
         response.send("Product not found");

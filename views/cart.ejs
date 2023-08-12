@@ -12,6 +12,11 @@
 <body>
     <%- include('partials/header') %>
         <div class="main">
+            <%if(message){%>
+                <p style="color: red;"><%=message%></p>
+                <%} else{%>
+                    <p></p>
+                    <%}%>
             <h1>Shopping Cart</h1>
             <main id="main-cart">
 
