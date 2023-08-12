@@ -10,6 +10,8 @@ const cartItem = require("./utils/product/cartItem");
 const addCounter = require("./utils/product/addCounter");
 const subCounter = require("./utils/product/subCounter");
 const deleteItem = require("./utils/product/deleteItem");
+const deleteProduct = require("./utils/product/deleteProduct");
+const updateProduct = require("./utils/product/updateProduct");
 const cardData = require("./utils/fetchData/cardData");
 const getData = require("./utils/fetchData/getData");
 const connect = require("./modals/database");
@@ -51,6 +53,7 @@ app.get('/', function(request,response){
        User.findOne({ username: user })
     .then((user) => {
         if (user) {
+            request.session.id = user._id;
             response.render('home',{username: user.username,id: user._id});
         } else {
             response.send("user not found");
@@ -118,17 +121,21 @@ app.get("/login", function (request, response) {
     }
 })
 app.get("/admin", function (request, response) {
-    if (request.session.username === "devanshu") {
-        response.render("admin", { username: "devanshu" });
-    } else {
-        response.render("login", { username: request.session.username, usernotfound: false });
+    const user = request.session.username;
+    if(request.session.isLoggedIn){
+       User.findOne({ username: user })
+    .then((user) => {
+        if (user) {
+
+            response.render('admin',{username: user.username,id: user._id});
+        } else {
+            response.send("user not found");
+        }
+    })
+    }else{
+        response.render("login",{usernotfound: false});
     }
 })
-// app.get("/forgot", function (request, response) {
-//     const email = request.query.email;
-//     request.session.email = email;
-//     response.render("forgotpass");
-// })
 app.get("/forgot", function (request, response) {
     const id = request.query.id;
     response.render("forgotpass", { id: id });
@@ -162,7 +169,7 @@ app.get("/changepassword", function (request, response) {
 
 })
 app.get("/cart", function (request, response) {
-    response.render("cart", { username: request.session.username });
+    response.render("cart", { username: request.session.username ,id: request.session.id});
 })
 app.get("/cardData",cardData);
 app.get("/Data",getData);
@@ -177,5 +184,7 @@ app.post("/cart", cartItem);
 app.post("/add", addCounter);
 app.post("/sub", subCounter);
 app.post("/deleteitem", deleteItem);
+app.post("/deleteproduct", deleteProduct);
+app.post("/updateProduct",updateProduct)
 connect();
 app.listen(8080, () => console.log(`Example app listening on port 8080`))

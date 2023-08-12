@@ -12,6 +12,7 @@ background-color: #f1f1f1;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50vw;
 }
 
 h1 {
@@ -54,4 +55,18 @@ background-color: #45a049;
     align-items: center;
     flex-wrap: wrap;
     gap: 3rem;
+}
+.show{
+    width: 50vw;
+    height: 30vh;
+}
+.container{
+    display: flex;
+}
+#main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 85vh;
 }

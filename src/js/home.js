@@ -245,16 +245,13 @@ function loadmore(start, end) {
     document.getElementById("loadmore").style.backgroundColor = "red";
   }
 }
-function handleModal(id,productDescription,avtar,productName,productPrice){
+function handleModal(id, productDescription, avtar, productName, productPrice) {
   const desc = document.getElementById("pdesc");
   const name = document.getElementById("pname");
-   const price = document.getElementById("pprice");
-   const av = document.getElementById("pimg");
-   desc.innerText = productDescription;
-   name.innerText = productName;
-   price.innerText = "₹ "+ productPrice;
-   av.src = avtar;
-   console.log(avtar)
-   console.log(mod);
-   console.log(productDescription);
-   }
+  const price = document.getElementById("pprice");
+  const av = document.getElementById("pimg");
+  desc.innerText = productDescription;
+  name.innerText = productName;
+  price.innerText = "₹ " + productPrice;
+  av.src = avtar;
+}
