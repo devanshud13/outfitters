@@ -7,7 +7,7 @@ const cartSchema = new mongoose.Schema({
         required: true
     },
     productPrice: {
-        type: String,
+        type: Number,
         required: true
     },
     productDescription: {
@@ -15,7 +15,7 @@ const cartSchema = new mongoose.Schema({
         required: true
     },
     productQuantity: {
-        type: String,
+        type: Number,
         required: true
     },
     avtar: {
