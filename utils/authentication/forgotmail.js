@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+require('dotenv').config()
 const forgotmail = async (host,email,id) => {
     let transporter;
     try {
@@ -8,8 +9,8 @@ const forgotmail = async (host,email,id) => {
         secure: false,
         requireTLS: true,
         auth: {
-          user: "devanshubhatnagar09@gmail.com",
-          pass: "udswjudlksklppjy"
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
         }
       });
     } catch (error) {
@@ -18,7 +19,7 @@ const forgotmail = async (host,email,id) => {
     const mailOptions = {
       from: "devanshubhatnagar09@gmail.com",
       to: email,
-      subject: "reset your password from OUTFITTERS",
+      subject: "reset your password ",
       html: `
       <h3>Click on the link below to Reset your password</h3>
       <a href="${host}/forgot?id=${id}">Verify</a>`

@@ -9,6 +9,7 @@ function signup(request, response) {
   const password = request.body.password;
   const verify = false;
   const host = request.headers.host;
+  const subject = "Verify your email";
   const newUser = new User({
     username: username,
     password: password,
@@ -25,7 +26,10 @@ function signup(request, response) {
         newUser.save()
           .then(function (user) {
             response.status(200);
-            verifymail(host,email, username, user._id);
+            const html=`<h1>Hi ${username}</h1>
+            <h3>Click on the link below to verify your email</h3>
+            <a href="${host}/verify?id=${user._id}">Verify</a>`
+            verifymail(subject,email,html);
             request.session.username = null;
             request.session.usernotfound = false;
             response.redirect("/login");

@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer");
-const verifymail = async (host,email, username, id) => {
+require('dotenv').config()
+const verifymail = async (subject,email,html) => {
     let transporter;
     try {
       transporter = nodemailer.createTransport({
@@ -8,8 +9,8 @@ const verifymail = async (host,email, username, id) => {
         secure: false,
         requireTLS: true,
         auth: {
-          user: "devanshubhatnagar09@gmail.com",
-          pass: "udswjudlksklppjy"
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
         }
       });
     } catch (error) {
@@ -18,10 +19,8 @@ const verifymail = async (host,email, username, id) => {
     const mailOptions = {
       from: "devanshubhatnagar09@gmail.com",
       to: email,
-      subject: "Verify your email",
-      html: `<h1>Hi ${username}</h1>
-      <h3>Click on the link below to verify your email</h3>
-      <a href="${host}/verify?id=${id}">Verify</a>`
+      subject: `${subject}`,
+      html: `${html}`
     };
     try {
       const info = await transporter.sendMail(mailOptions);

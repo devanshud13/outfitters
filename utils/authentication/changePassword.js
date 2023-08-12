@@ -1,11 +1,10 @@
 const User = require("../../modals/user");
+const verifymail = require("./verifyMail");
 
 function changepassword(request, response) {
-console.log(request.session.email)
-  // const email = request.body.email;
   const id = request.query.id;
-  console.log(id);
   const password = request.body.confirmpassword;
+  const subject = "Password Changed";
 
   User.findOne({ _id: id })
     .then(function (user) {
@@ -17,6 +16,9 @@ console.log(request.session.email)
         user.password = password;
         user.save().then(function () {
           response.status(200);
+          const html = `<h1>Hi ${user.username}</h1>
+          <p>Your password has been changed successfully</p>`
+          verifymail(subject,user.email,html);
           response.redirect("/");
         });
       }
