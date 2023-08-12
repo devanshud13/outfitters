@@ -238,7 +238,9 @@ function loadmore(start, end) {
       showProducts(end, end + 5);
       btn.remove();
     });
-    btn.innerText = "Load More";
+    btn.innerHTML = `<button id="btnlogout"> Load More</button>`
+    btn.style.backgroundColor = "transparent";
+    btn.style.border = "none";
     main.appendChild(btn);
   }
   else {
