@@ -21,8 +21,14 @@ function cartItem(request, response) {
           username: user,
           count: 1,
         };
-
-        Cart.create(filteredProduct)
+        Cart.findOne({ productName: product.productName, username: user })
+          .then(function (cartItem) {
+            if (cartItem){
+              response.status(500);
+              response.redirect("/cart");
+            }
+            else{
+              Cart.create(filteredProduct)
           .then(function () {
             response.status(200);
             response.redirect("/");
@@ -31,6 +37,8 @@ function cartItem(request, response) {
             response.status(500);
             response.redirect("/cart");
           });
+          }
+          })
       } else {
         response.status(404);
         response.send("Product not found");
