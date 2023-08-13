@@ -9,24 +9,23 @@ function subCount(request, response) {
         cartItem.count -= 1;
         const temp = cartItem.count * cartItem.productPrice;
         cartItem.productPrice = temp / (cartItem.count + 1);
-
         cartItem.save()
           .then(function () {
-            if (cartItem.count === 0) {
-              Cart.deleteOne({ _id: id, username: request.session.username })
-                .then(function () {
-                  response.status(200);
-                  response.redirect("/cart");
-                })
-                .catch(function (error) {
-                  response.status(500);
-                  console.log(error);
-                  response.send("An error occurred while deleting the cart item");
-                });
-            } else {
+            // if (cartItem.count === 0) {
+            //   Cart.deleteOne({ _id: id, username: request.session.username })
+            //     .then(function () {
+            //       response.status(200);
+            //       response.redirect("/cart");
+            //     })
+            //     .catch(function (error) {
+            //       response.status(500);
+            //       console.log(error);
+            //       response.send("An error occurred while deleting the cart item");
+            //     });
+            // } else {
               response.status(200);
               response.redirect("/cart");
-            }
+            // }
           })
           .catch(function (error) {
             response.status(500);
