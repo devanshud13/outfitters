@@ -225,18 +225,27 @@ function showProducts(start, end) {
       main.appendChild(card);
     }
   }
-  // add a button to load more products
   loadmore(start, end);
 
 }
+const load = document.getElementById("load");
+load.style.display = "none";
 function loadmore(start, end) {
   if (end < products.length) {
     const main = document.getElementById("main");
     const btn = document.createElement("button");
     btn.setAttribute("id", "loadmore");
     btn.addEventListener("click", function () {
+      const load = document.getElementById("load");
+      load.style.display = "block";
+      main.style.filter = "blur(5px)";
+      setTimeout(function () {
+        load.style.display = "none";
+        main.style.filter = "blur(0px)";
       showProducts(end, end + 5);
       btn.remove();
+      }, 1000);
+
     });
     btn.innerHTML = `<button id="btnlogout"> Load More</button>`
     btn.style.backgroundColor = "transparent";
