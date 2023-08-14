@@ -20,7 +20,6 @@ fetch("/carddata")
             <img src=${avtar} alt="Product Image">
             <div>
                 <h3>${productName}</h3>
-                <p>${productDescription}</p>
                 <div class="card__counter">
                 <button class="card__btn" id="${Id}" onclick="handleSub(this.id, '${count}')">-</button>
                 <div class="card__counter-score" id="counter+${Id}">${count}</div>

@@ -288,3 +288,19 @@ a:hover {
     background: #3a0ca3;
     transition: background 0s;
 }
+
+@media screen and (max-width: 768px) {
+
+    .user-info {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 23rem;
+        gap: 2px;
+    }
+    .navbar {
+        flex-direction: column;
+    }
+}
+

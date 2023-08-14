@@ -23,7 +23,7 @@ fetch("/data")
         <div class="card__price">₹ ${productPrice}</div>
     </div> 
 <div class="buttons">
-<button class="add-to-cart" id="${Id}" onclick="handleUpdate(this.id,'${productName}','${productDescription}','${productPrice}','${productQuantity}')" >Update</button>
+<a href ="#"><button class="add-to-cart" id="${Id}" onclick="handleUpdate(this.id,'${productName}','${productDescription}','${productPrice}','${productQuantity}')" >Update</button><a>
 <form id="${Id}" action="/deleteproduct?id=${Id}" method="POST">
 <button type="submit" class="btn btn-success"  >
   Delete Item
@@ -112,7 +112,7 @@ btn.addEventListener("click", function (e) {
         e.preventDefault();
         alerts.innerText = "File type should be .jpeg, .jpg, or .png";
         alerts.style.color = "red";
-    } else if (productImage.files[0].size < 5000 || productImage.files[0].size > 1000000) {
+    } else if (productImage.files[0].size < 5000 || productImage.files[0].size > 10485760) {
         e.preventDefault();
         alerts.innerText = "File size should be between 5 KB and 250 KB";
         alerts.style.color = "red";

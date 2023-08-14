@@ -31,9 +31,6 @@
 
 /* Cart summary styles */
 .cart-summary {
-    margin-top: 2rem;
-    border-top: 1px solid #ccc;
-    padding-top: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -99,4 +96,21 @@
 
 .card__btn-plus {
     background: var(--bg-color);
+}
+
+@media screen and (max-width: 768px) {
+    .cart-item .price {
+        bottom: 30px;
+        position: relative;
+    }
+    .card__counter {
+        gap: 26px;
+        width: 7rem;
+        margin-top: 10px;
+    }
+    .cart-summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
