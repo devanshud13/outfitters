@@ -286,3 +286,10 @@ footer p {
     top: 40%;
     left: 50%;
   }
+  @media screen and (max-width: 768px) {
+    #load {
+        top: 43%;
+        left: 40%;
+        position: fixed;
+    }
+}

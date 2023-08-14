@@ -242,6 +242,7 @@ function loadmore(start, end) {
       setTimeout(function () {
         load.style.display = "none";
         main.style.filter = "blur(0px)";
+        main.style.transition = "all 1s ease";
       showProducts(end, end + 5);
       btn.remove();
       }, 1000);
