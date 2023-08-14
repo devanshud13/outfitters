@@ -72,6 +72,9 @@
   font-size: 15px;
   color: var(--main-color);
   letter-spacing: 0.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card__price {
