@@ -267,3 +267,4 @@ function handleModal(id, productDescription, avtar, productName, productPrice) {
   price.innerText = "₹ " + productPrice;
   av.src = avtar;
 }
+console.log("hello");
